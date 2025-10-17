@@ -71,7 +71,7 @@ def _sample_rows(A, k, seed=3047):
 
 # Background set for Kernel SHAP and data to explain
 X_bg   = _sample_rows(X_train, k=min(200,  len(X_train)))  # background
-X_plot = _sample_rows(X,       k=min(512,  len(X)))        # points to explain (or use X_test)
+X_plot = _sample_rows(X_test, k=min(512, len(X_test)))
 
 try:
     # Robust predictor wrapper (works with Pipeline)

@@ -85,7 +85,7 @@ def _sample_rows(A, k, seed=3047):
 
 # Kernel SHAP with background + explanation subsamples for tractability
 X_bg   = _sample_rows(X_train, k=min(200, len(X_train)))   # background
-X_plot = _sample_rows(X,       k=min(512, len(X)))         # points to explain (or use X_test)
+X_plot = _sample_rows(X_test,       k=min(512, len(X)))         # points to explain (or use X_test)
 
 try:
     # Wrapper to handle DataFrame/ndarray inputs through the Pipeline

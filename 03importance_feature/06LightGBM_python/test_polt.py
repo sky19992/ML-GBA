@@ -65,7 +65,7 @@ bayes.fit(X_train, y_train)
 best_model = bayes.best_estimator_
 
 # ===== 4) Importance (prefer SHAP; fallback to LightGBM gain/built-in) =====
-X_plot = X  # use full data for global importance (use X_test if preferred)
+X_plot = X_test  
 x_label = "Mean |SHAP| value"
 
 try:

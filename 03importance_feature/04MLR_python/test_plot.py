@@ -51,7 +51,7 @@ def _sample_rows(A, k, seed=3047):
 
 # Background and points to explain
 X_bg   = _sample_rows(X_train, k=min(500, len(X_train)))
-X_plot = _sample_rows(X,       k=min(1024, len(X)))
+X_plot = _sample_rows(X_test,       k=min(1024, len(X)))
 
 try:
     # Use LinearExplainer on the *standardized* design matrix

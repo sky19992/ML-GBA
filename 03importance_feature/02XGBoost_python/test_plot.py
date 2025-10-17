@@ -63,7 +63,7 @@ bayes.fit(X_train, y_train)
 best_model = bayes.best_estimator_
 
 # ===== 3) Compute importance (prefer SHAP; fallback to built-in) =====
-X_plot = X  # Use full data to estimate global importance (or use X_test)
+X_plot = X_test
 x_label = "Mean |SHAP| value"
 
 try:
