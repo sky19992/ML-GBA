@@ -81,13 +81,13 @@ print("\nModel performance:")
 print(f" Training R² = {r2_score(y_train, y_pred_train):.4f}, RMSE = {rmse_train:.4f}, MAE = {mae_train:.4f}, MdAE = {mdae_train:.4f}")
 print(f" Testing  R² = {r2_score(y_test,  y_pred_test):.4f}, RMSE = {rmse_test:.4f},  MAE = {mae_test:.4f},  MdAE = {mdae_test:.4f}")
 
-# === 7) 10-fold cross-validation on the whole dataset ===
-cv = KFold(10, shuffle=True, random_state=42)
+# === 7) 5-fold cross-validation on train data ===
+cv = KFold(5, shuffle=True, random_state=42)
 cv_scores = cross_val_score(
-    best_model, scaler.transform(X), y,
+    best_model, scaler.transform(X_train), y_train,
     cv=cv, scoring="r2", n_jobs=-1
 )
-print("\n10-fold CV R²:", np.round(cv_scores, 4),
+print("\n5-fold CV R²:", np.round(cv_scores, 4),
       "Mean =", round(cv_scores.mean(), 4), "Std =", round(cv_scores.std(), 4))
 
 # === 8) Fit scatter plot (Train vs Test) ===

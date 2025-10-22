@@ -3,11 +3,12 @@ import tempfile
 from joblib import parallel_backend
 from datetime import datetime
 
+
 # === Data & model packages ===
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split, KFold
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
@@ -77,6 +78,13 @@ mae_test   = mean_absolute_error(y_test,  y_test_pred)
 
 print(f"Train R²: {r2_train:.4f}, RMSE: {rmse_train:.4f}, MAE: {mae_train:.4f}")
 print(f"Test  R²: {r2_test:.4f}, RMSE: {rmse_test:.4f}, MAE: {mae_test:.4f}")
+
+# === 6) 5-fold cross-validation on train data with best model ===
+cv = KFold(5, shuffle=True, random_state=42)
+cv_scores = cross_val_score(best_model, X_train, y_train, cv=cv, scoring="r2", n_jobs=-1)
+print("\n5-fold CV R²:", np.round(cv_scores, 4),
+      "Mean =", round(cv_scores.mean(), 4), "Std =", round(cv_scores.std(), 4))
+
 
 # ---------------- Step 7: Plot (Train vs Test) ----------------
 plt.figure(figsize=(8, 7), dpi=300)

@@ -89,9 +89,9 @@ print("\nModel performance:")
 print(f" Training R² = {r2_score(y_train, y_pred_train):.4f}, RMSE = {rmse_train:.4f}, MAE = {mae_train:.4f}, MdAE = {mdae_train:.4f}")
 print(f" Testing  R² = {r2_score(y_test,  y_pred_test):.4f}, RMSE = {rmse_test:.4f}, MAE = {mae_test:.4f},  MdAE = {mdae_test:.4f}")
 
-# === 7. 5-fold cross-validation on full data ===
+# === 7. 5-fold cross-validation on train data ===
 cv = KFold(5, shuffle=True, random_state=42)
-cv_scores = cross_val_score(model, X, y, cv=cv, scoring="r2", n_jobs=-1)
+cv_scores = cross_val_score(model, X_train, y_train, cv=cv, scoring="r2", n_jobs=-1)
 print("\n5-fold CV R²:", np.round(cv_scores, 4),
       "Mean =", round(cv_scores.mean(), 4), "Std =", round(cv_scores.std(), 4))
 
